@@ -5,7 +5,7 @@
   --updated-color: #666;
   --font-color: #373535;
   --normal-temp: #007500;
-  --warning-temp: #857300;
+  --warning-temp: #8f7c00;
   --attention-temp: #9E0000;
   --trans-time: 100ms;
 
@@ -42,6 +42,7 @@ body {
 }
 
 #bg-fridge-guy {
+  display: block;
   position: absolute;
   left: 50%;
   top: 50%;

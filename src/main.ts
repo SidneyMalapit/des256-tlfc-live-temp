@@ -22,7 +22,7 @@ async function loadCards() {
     const container = document.createElement('article');
     container.classList.add('fridge-data-container');
     if (fridgeData.temperature > 40) { container.classList.add('needs-attention'); }
-    else if (fridgeData.temperature > 37) { container.classList.add('warning'); }
+    else if (fridgeData.temperature >= 38) { container.classList.add('warning'); }
 
     for (const key of ['name', 'temperature', 'lastUpdated'] as (keyof FridgeData)[]) {
       let value = fridgeData[key];
@@ -38,6 +38,19 @@ async function loadCards() {
           dateTime: value.toLocaleString(),
           extended: value.toString(),
         };
+
+        const diff = Date.now() - value.getTime();
+
+        if (diff < 60 * 1000) {
+          dateTypes.time = `${Math.floor(diff / 1000)} seconds`
+        } else if (diff < 60 * 60 * 1000) {
+          dateTypes.time = `${Math.floor(diff / 1000 / 60)} minutes`;
+        } else if (diff <= 24 * 60 * 60 * 1000) {
+          dateTypes.time = `${Math.floor(diff / 1000 / 60 / 60)} hours`;
+        } else {
+          dateTypes.time = 'more than a day';
+        }
+        dateTypes.time += ' ago';
 
         for (const dateStringType in dateTypes) {
           const dateString = dateTypes[dateStringType as keyof typeof dateTypes];
@@ -62,6 +75,9 @@ async function loadCards() {
 }
 
 loadCards();
+
+// auto update every 5 minutes
+setInterval(loadCards, 1000 * 60 * 5);
 
 document.getElementById('reload')?.addEventListener('click', loadCards);
 
