@@ -26,7 +26,7 @@ async function loadCards() {
     container.classList.add('fridge-data-container');
     if (fridgeData.temperature > 40) {
       container.classList.add('needs-attention');
-    } else if (fridgeData.temperature >= 38) {
+    } else if (fridgeData.temperature > 38) {
       container.classList.add('warning');
     }
 
