@@ -1,5 +1,8 @@
-export const API_DOMAIN = 't1.frykman.dev';
-export const API_ENDPOINT = `https://${API_DOMAIN}/api`;
+export const API_DOMAIN = import.meta.env.VITE_API_DOMAIN;
+export const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
+
+if (!API_DOMAIN) { throw Error('could not find API_DOMAIN; set in environent variables'); }
+if (!API_ENDPOINT) { throw Error('could not find API_ENDPOINT; set in environent variables'); }
 
 export class FridgeData {
   constructor(
