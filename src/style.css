@@ -23,7 +23,7 @@
   main#fridge-data-table {
     flex: initial;
     width: 100%;
-    height: min-content;
+    overflow-y: visible;
   }
 }
 
@@ -57,21 +57,22 @@ header {
   font-family: 'ohno-softie-variable', sans-serif;
 
   #logo {
-    margin: 1rem;
+    margin-top: 1rem;
     width: min(500px, 60vw);
+    display: block;
   }
 }
 
 #fridge-data-table {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   flex: 1;
-  height: 100%;
+  max-height: 100%;
   gap: 0.75rem;
   box-sizing: border-box;
-  padding: 0 1rem;
+  padding: 1rem;
   max-width: 32ch;
+  overflow-y: scroll;
 }
 
 #reload {

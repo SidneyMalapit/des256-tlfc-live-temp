@@ -14,15 +14,21 @@ await new Promise((resolve) => addEventListener('DOMContentLoaded', resolve));
 
 async function loadCards() {
   const table = document.getElementById('fridge-data-table')!;
-  for (const fridge of table.querySelectorAll('.fridge-data-container')) {
-    fridge.remove();
+  {
+    let fridge: Element | null;
+    while (fridge = table.querySelector('.fridge-data-container')) {
+      fridge.remove();
+    }
   }
 
   for (const fridgeData of (await getAllTemperatures())) {
     const container = document.createElement('article');
     container.classList.add('fridge-data-container');
-    if (fridgeData.temperature > 40) { container.classList.add('needs-attention'); }
-    else if (fridgeData.temperature >= 38) { container.classList.add('warning'); }
+    if (fridgeData.temperature > 40) {
+      container.classList.add('needs-attention');
+    } else if (fridgeData.temperature >= 38) {
+      container.classList.add('warning');
+    }
 
     for (const key of ['name', 'temperature', 'lastUpdated'] as (keyof FridgeData)[]) {
       let value = fridgeData[key];
