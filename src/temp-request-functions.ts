@@ -1,7 +1,5 @@
-export const API_DOMAIN = import.meta.env.VITE_API_DOMAIN;
 export const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 
-if (!API_DOMAIN) { throw Error('could not find API_DOMAIN; set in environent variables'); }
 if (!API_ENDPOINT) { throw Error('could not find API_ENDPOINT; set in environent variables'); }
 
 export class FridgeData {
@@ -14,7 +12,7 @@ export class FridgeData {
   get temperatureCelsius() { return Math.round((this.temperature - 32) * 5 / 9); }
 }
 
-const fridgeResponseExtractor = /^([ -{}~]+)\|(\d+(?:\.\d+)?)\|(\d+)$/;
+const fridgeResponseExtractor = /^([ -{}~]+)\|(-?\d+(?:\.\d+)?)\|(\d+)/;
 export function deserialize(encodedFridgeData: string) {
   const [
     _,
