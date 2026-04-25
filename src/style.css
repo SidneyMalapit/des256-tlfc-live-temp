@@ -78,6 +78,18 @@ header {
   max-width: 32ch;
   overflow-y: scroll;
   position: relative;
+
+  &::after {
+    align-self: center;
+    aspect-ratio: 1 / 1;
+    background-image: url('/thermy-lower.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: '';
+    display: block;
+    width: 150px;
+    filter: drop-shadow(0px 2px 3px var(--shadow));
+  }
 }
 
 #fridge-interactives-container {
