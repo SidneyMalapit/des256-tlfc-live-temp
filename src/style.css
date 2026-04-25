@@ -88,7 +88,7 @@ header {
     content: '';
     display: block;
     filter: drop-shadow(0px 2px 3px var(--shadow));
-    margin-bottom: 1rem;
+    border-bottom: 1rem solid transparent;
     position: absolute;
     top: 100%;
     width: 150px;
