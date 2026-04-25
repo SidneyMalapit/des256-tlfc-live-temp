@@ -46,17 +46,23 @@ async function loadCards() {
         };
 
         const diff = Date.now() - value.getTime();
+        let time: number;
 
         if (diff < 60 * 1000) {
-          dateTypes.time = `${Math.floor(diff / 1000)} seconds`
+          dateTypes.time = 'second';
+          time = diff / 1000;
         } else if (diff < 60 * 60 * 1000) {
-          dateTypes.time = `${Math.floor(diff / 1000 / 60)} minutes`;
+          dateTypes.time = 'minute';
+          time = diff / 1000 / 60;
         } else if (diff <= 24 * 60 * 60 * 1000) {
-          dateTypes.time = `${Math.floor(diff / 1000 / 60 / 60)} hours`;
+          dateTypes.time = 'hour';
+          time = diff / 1000 / 60 / 60;
         } else {
           dateTypes.time = 'more than a day';
+          time = NaN;
         }
-        dateTypes.time += ' ago';
+        time = Math.floor(time);
+        dateTypes.time = `${isNaN(time) ? '' : (time + ' ')}${dateTypes.time}${time === 1 ? '' : 's'} ago`;
 
         for (const dateStringType in dateTypes) {
           const dateString = dateTypes[dateStringType as keyof typeof dateTypes];
