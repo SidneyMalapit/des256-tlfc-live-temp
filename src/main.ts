@@ -62,7 +62,7 @@ async function loadCards() {
           time = NaN;
         }
         time = Math.floor(time);
-        dateTypes.time = `${isNaN(time) ? '' : (time + ' ')}${dateTypes.time}${time === 1 ? '' : 's'} ago`;
+        dateTypes.time = `${isNaN(time) ? '' : (time + ' ')}${dateTypes.time}${time === 1 || isNaN(time) ? '' : 's'} ago`;
 
         for (const dateStringType in dateTypes) {
           const dateString = dateTypes[dateStringType as keyof typeof dateTypes];
