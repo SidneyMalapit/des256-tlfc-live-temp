@@ -7,6 +7,7 @@
   --normal-temp: #007500;
   --warning-temp: #8f7c00;
   --attention-temp: #9E0000;
+  --freezing-temp: #4B97A2;
   --trans-time: 100ms;
 
   font-family: 'omnes-pro', sans-serif;
@@ -163,6 +164,7 @@ header {
   & .green { color: var(--normal-temp); }
   & .yellow { color: var(--warning-temp); }
   & .red { color: var(--attention-temp); }
+  & .blue { color: var(--freezing-temp); }
 
   #temperature-info:is(:focus, :hover) & {
     visibility: visible;
@@ -184,6 +186,7 @@ header {
 
   &.warning { border: 2px solid var(--warning-temp); }
   &.needs-attention { border: 2px solid var(--attention-temp); }
+  &.freezing { border: 2px solid var(--freezing-temp); }
 
   & > span { display: block; }
 }
@@ -200,6 +203,7 @@ header {
 
   .warning & { color: var(--warning-temp); }
   .needs-attention & { color: var(--attention-temp); }
+  .freezing & { color: var(--freezing-temp); }
 }
 .fridge-last-updated {
   font-size: calc(16rem / 21);

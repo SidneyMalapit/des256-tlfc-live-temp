@@ -28,6 +28,8 @@ async function loadCards() {
       container.classList.add('needs-attention');
     } else if (fridgeData.temperature > 38) {
       container.classList.add('warning');
+    } else if (fridgeData.temperature <= 32) {
+      container.classList.add('freezing');
     }
 
     for (const key of ['name', 'temperature', 'lastUpdated'] as (keyof FridgeData)[]) {
